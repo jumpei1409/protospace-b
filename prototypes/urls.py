@@ -5,5 +5,5 @@ from .views import IndexView
 
 app_name = 'Prototypes'
 urlpatterns = [
-    path('prototypes/index',IndexView.as_view(),name='index'),
+    path('',IndexView.as_view(),name='index'),
 ]
