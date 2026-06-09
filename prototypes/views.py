@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from .models import Prototype
 from django.views.generic import ListView
 
 class IndexView(ListView):
-    class Meta:
-        model = 'prototypes'
-        template_list = 'index.html'
+    model = Prototype
+    template_name = 'index.html'
