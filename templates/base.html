@@ -5,14 +5,14 @@
 <head>
   <meta charset='UTF-8'>
   <title>Protospace</title>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
 </head>
 
 <body>
 
   <header class="header">
     <a class="logo" href="">
-      <span class="logo-sub">SHARE THE PROTOTYPE</span><br>
-      <span class="logo-main">PROTO SPACE</span>
+      <img src="{% static 'images/logo.png' %}" alt="PROTO SPACE">
     </a>
 
     {% if user.is_authenticated %}
