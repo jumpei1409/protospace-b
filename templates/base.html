@@ -23,8 +23,8 @@
 
     {% else %}
     <div class="nav">
-      <a class="btn-nav" href="">ログイン</a>
-      <a class="btn-nav" href="">新規登録</a>
+      <a class="btn-nav" href={% url "users:sign_in" %}>ログイン</a>
+      <a class="btn-nav" href={% url "users:sign_up" %}>新規登録</a>
     </div>
 
     {% endif %}
@@ -33,7 +33,7 @@
   <main>
     {% block content %}{% endblock content %}
   </main>
-
+  
   <footer>
     <p>
       Copyright © PROTO SPACE All rights reserved.
