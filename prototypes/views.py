@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from .models import Prototype
+from django.views.generic import ListView
 
-# Create your views here.
+class IndexView(ListView):
+    model = Prototype
+    template_name = 'prototypes/index.html'
+    context_object_name = 'prototypes'

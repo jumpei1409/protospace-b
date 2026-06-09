@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset='UTF-8'>
+  <title>Protospace</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+  <header class="header">
+    <a class="logo" href="">
+      <img src="{% static 'images/logo.png' %}" alt="PROTO SPACE">
+    </a>
+
+    {% if user.is_authenticated %}
+    <div class="nav">
+      <a href="">ログアウト</a>
+      <a class="btn-nav" href="">New Proto</a>
+    </div>
+
+    {% else %}
+    <div class="nav">
+      <a class="btn-nav" href="">ログイン</a>
+      <a class="btn-nav" href="">新規登録</a>
+    </div>
+
+    {% endif %}
+  </header>
+
+  {% block content %}{% endblock content %}
+
+  <footer>
+    <p>
+      Copyright © PROTO SPACE All rights reserved.
+    </p>
+  </footer>
+
+</body>
+
+</html>
