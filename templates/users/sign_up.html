@@ -1,3 +1,4 @@
+{# sign_up.html #}
 {% extends "base.html" %}
 {% block content %}
 
@@ -15,7 +16,7 @@
             {% endif %}
 
             <div class="field">
-                {{ form.email.label_tag }}
+                <label>メールアドレス</label>
                 {{ form.email }}
                 {% if form.email.errors %}
                 <ul class="errorlist">
@@ -27,7 +28,7 @@
             </div>
 
             <div class="field">
-                {{ form.password1.label_tag }}<a>（6文字以上）</a>
+                <label>パスワード（6文字以上）</label>
                 {{ form.password1 }}
                 {% if form.password1.errors %}
                 <ul class="errorlist">
@@ -39,7 +40,7 @@
             </div>
 
             <div class="field">
-                {{ form.password2.label_tag }}
+                <label>パスワード再入力</label>
                 {{ form.password2 }}
                 {% if form.password2.errors %}
                 <ul class="errorlist">
@@ -51,7 +52,7 @@
             </div>
 
             <div class="field">
-                {{ form.nickname.label_tag }}
+                <label>ユーザー名</label>
                 {{ form.nickname }}
                 {% if form.nickname.errors %}
                 <ul class="errorlist">
@@ -63,7 +64,7 @@
             </div>
 
             <div class="field">
-                {{ form.profile.label_tag }}
+                <label>プロフィール</label>
                 {{ form.profile }}
                 {% if form.profile.errors %}
                 <ul class="errorlist">
@@ -75,7 +76,7 @@
             </div>
 
             <div class="field">
-                {{ form.affiliation.label_tag }}
+                <label>所属</label>
                 {{ form.affiliation }}
                 {% if form.affiliation.errors %}
                 <ul class="errorlist">
@@ -87,7 +88,7 @@
             </div>
 
             <div class="field">
-                {{ form.position.label_tag }}
+                <label>役職</label>
                 {{ form.position }}
                 {% if form.position.errors %}
                 <ul class="errorlist">
