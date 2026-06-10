@@ -17,14 +17,14 @@
 
 <!--コメント一覧-->
 {% for comment in comments %}
-    {{ comment.}}
+    {{ comment.text}}
     {{ comment.user.nickname}}
 {% endfor %}
 
 
 
 <!---コメント投稿フォーム-->
-<form method="post">
+<form method="post" action="{% url 'Comment:create' object.pk %}">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="送信する">
