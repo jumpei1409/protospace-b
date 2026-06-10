@@ -2,15 +2,15 @@
 
 <div class="container">
   {% if user.is_authenticated %}
-<form method="post" enctype="multipart/form-data" action="{% url 'Comment:create' %}">
-          {% csrf_token %}
-          <label>コメント</label>
-          {{ form.text }}
-          <input type="submit" value="SEND">
+  <form method="post" enctype="multipart/form-data" action="{% url 'Comment:create' pk=prototype.pk %}">
+    {% csrf_token %}
+    <label>コメント</label>
+    {{ form.text }}
+    <input type="submit" value="SEND">
   </form>
-  {% else %}
+    {% else %}
     <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
-  {% endif %}
+    {% endif %}
 
   <div class="comments">
     {% for comment in comments %}
