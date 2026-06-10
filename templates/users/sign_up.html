@@ -15,7 +15,8 @@
             </div>
             {% endif %}
 
-            <div class="field">
+            <!-- 短い入力欄 -->
+            <div class="field narrow">
                 <label>メールアドレス</label>
                 {{ form.email }}
                 {% if form.email.errors %}
@@ -27,7 +28,7 @@
                 {% endif %}
             </div>
 
-            <div class="field">
+            <div class="field narrow">
                 <label>パスワード（6文字以上）</label>
                 {{ form.password1 }}
                 {% if form.password1.errors %}
@@ -39,7 +40,7 @@
                 {% endif %}
             </div>
 
-            <div class="field">
+            <div class="field narrow">
                 <label>パスワード再入力</label>
                 {{ form.password2 }}
                 {% if form.password2.errors %}
@@ -51,7 +52,7 @@
                 {% endif %}
             </div>
 
-            <div class="field">
+            <div class="field narrow">
                 <label>ユーザー名</label>
                 {{ form.nickname }}
                 {% if form.nickname.errors %}
@@ -63,6 +64,7 @@
                 {% endif %}
             </div>
 
+            <!-- 長い入力欄 -->
             <div class="field">
                 <label>プロフィール</label>
                 {{ form.profile }}
