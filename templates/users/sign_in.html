@@ -14,8 +14,8 @@
             </div>
             {% endif %}
 
-            <div class="field">
-                {{ form.username.label_tag }}
+            <div class="field narrow">
+                <label>メールアドレス</label>
                 {{ form.username }}
                 {% if form.username.errors %}
                 <ul class="errorlist">
@@ -26,8 +26,8 @@
                 {% endif %}
             </div>
 
-            <div class="field">
-                {{ form.password.label_tag }}<a>（6文字以上）</a>
+            <div class="field narrow">
+                <label>パスワード（6文字以上）</label>
                 {{ form.password }}
                 {% if form.password.errors %}
                 <ul class="errorlist">
