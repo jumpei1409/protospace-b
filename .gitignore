@@ -1,5 +1,7 @@
 __pycache__/
 *.pyc
+# .gitignore
+.DS_Store
 # macOS
 .DS_Store
 
