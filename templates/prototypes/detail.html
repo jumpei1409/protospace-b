@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class= "contents row">
+    {{ object.title }}  
+    {{ object.catchphrase }}  
+    {{ object.concept }}  
+    {{ object.user.nickname }}  
+    <img src="{{object.image.url}}">
+
+{% if user == object.user %}
+    <a href="">編集する</a>
+    <a href="">削除する</a>
+{% endif %}
+</div>
+
+{% endblock content %}
