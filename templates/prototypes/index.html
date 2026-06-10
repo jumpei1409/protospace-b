@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 
-<body>
 <div class ="contents row">
   {% for prototype in prototypes %}
   <div class = "card">
@@ -17,9 +16,8 @@
 
   </div>
 {% endfor %}
-
+</div>
   <h3>こんにちは{{user.nickname}}さん</h3>
 
-</body>
 
 {% endblock content %}
