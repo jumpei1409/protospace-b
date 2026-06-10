@@ -1,8 +1,11 @@
 from .models import Prototype
-from django.views.generic import ListView,DetailView
+from django.views.generic import ListView,DetailView,CreateView
 from comments.forms import CommentForm
-from django.views.generic.edit import FormMixin
 from comments.models import Comment 
+from django.views.generic.edit import FormMixin
+from .forms import PrototypeForm
+from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class IndexView(ListView):
     model = Prototype
@@ -20,3 +23,15 @@ class PrototypeDetailView(FormMixin,DetailView):
         context['comments'] = comments
         context['form'] = self.get_form()
         return context
+
+class PrototypeCreateView(LoginRequiredMixin, CreateView):
+    login_url = '/users/sign_in/'
+    form_class = PrototypeForm
+    template_name = 'prototypes/create.html'
+    success_url = reverse_lazy('Prototypes:index')
+
+    def form_valid(self, form):
+        prototype = form.save(commit=False)
+        prototype.user = self.request.user
+        prototype.save()
+        return super().form_valid(form)
