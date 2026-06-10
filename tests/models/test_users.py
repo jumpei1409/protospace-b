@@ -1,7 +1,6 @@
-# tests/test_forms.py
 from django.test import TestCase
-from ..factories.users import UserFactory
-from ...users.forms import CustomUserCreationForm
+from tests.factories.users import UserFactory   # 絶対インポート
+from users.forms import CustomUserCreationForm  # 絶対インポート
 
 class BaseFormTest(TestCase):
     def setUp(self):
@@ -52,7 +51,7 @@ class UserFormFailureTestCase(BaseFormTest):
         form = CustomUserCreationForm(data=self.valid_data)
         self.assertFalse(form.is_valid())
         self.assertIn('email', form.errors)
-        self.assertEqual(form.errors['email'], ['この メールアドレス を持った カスタムユーザー が既に存在します。'])
+        self.assertEqual(form.errors['email'], ['この Email を持った Custom user が既に存在します。'])
 
     # パスワードが空だとフォームが無効になる
     def test_form_is_invalid_when_password_is_blank(self):
@@ -65,8 +64,8 @@ class UserFormFailureTestCase(BaseFormTest):
 
     # パスワードが6文字未満だとフォームが無効になる
     def test_form_is_invalid_when_password_is_too_short(self):
-        self.valid_data['password1'] = 'abc'
-        self.valid_data['password2'] = 'abc'
+        self.valid_data['password1'] = 'qpw0z'
+        self.valid_data['password2'] = 'qpw0z'
         form = CustomUserCreationForm(data=self.valid_data)
         self.assertFalse(form.is_valid())
         self.assertIn('password2', form.errors)
