@@ -15,7 +15,7 @@ class IndexViewTest(TestCase):
         #テスト用プロトタイプを作成
         self.prototype = Prototype.objects.create(
             title='テストタイトル',
-            text='テストテキスト',
+            catchphrase='テストテキスト',
             user=self.user,
         )
         #ログイン不要でアクセスできるか
@@ -37,7 +37,7 @@ class IndexViewTest(TestCase):
     def test_prototype_info_displayed(self):
         response = self.client.get(reverse('Prototypes:index'))
         self.assertContains(response, self.prototype.title)  
-        self.assertContains(response, self.prototype.text)  
+        self.assertContains(response, self.prototype.catchphrase)  
         self.assertContains(response, self.prototype.user.nickname)  
 
     # 画像URLが存在するか
