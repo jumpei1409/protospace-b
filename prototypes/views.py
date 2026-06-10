@@ -8,7 +8,7 @@ class IndexView(ListView):
     template_name = 'prototypes/index.html'
     context_object_name = 'prototypes'
 
-class CreateView(CreateView):
+class PrototypeCreateView(CreateView):
     form_class = PrototypeForm
     template_name = 'prototypes/create.html'
     success_url = reverse_lazy('Prototypes:index')
