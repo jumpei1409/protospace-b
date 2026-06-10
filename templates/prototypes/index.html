@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class ="contents row">
+  {% for prototype in prototypes %}
+  <div class = "card">
+    <a href="{% url 'Prototypes:detail' prototype.pk %}">
+
+      <img src="{{ prototype.image.url }}">
+      {{ prototype.catchphrase }}
+      {{ prototype.title}}
+      by{{ prototype.user.nickname}}
+    </a>
+  
+
+  </div>
+{% endfor %}
+</div>
+  <h3>こんにちは{{user.nickname}}さん</h3>
+
+
+{% endblock content %}
