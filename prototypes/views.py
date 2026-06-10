@@ -9,7 +9,7 @@ class IndexView(ListView):
     template_name = 'prototypes/index.html'
     context_object_name = 'prototypes'
 
-class DetailView(FormMixin,DetailView):
+class PrototypeDetailView(FormMixin,DetailView):
     model = Prototype
     form_class = CommentForm
     template_name = 'prototypes/detail.html'
