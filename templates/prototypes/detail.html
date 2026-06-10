@@ -15,4 +15,18 @@
 {% endif %}
 </div>
 
+<!--コメント一覧-->
+{% for comment in comments %}
+    {{ comment.}}
+    {{ comment.user.nickname}}
+{% endfor %}
+
+
+
+<!---コメント投稿フォーム-->
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="送信する">
+</form>
 {% endblock content %}
