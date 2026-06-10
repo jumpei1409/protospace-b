@@ -196,3 +196,7 @@ h2 {
 .container input[type="submit"]:hover {
   opacity: 0.85;
 }
+
+.field.narrow input {
+    width: 141px;
+}
