@@ -1,6 +1,6 @@
 from .models import Prototype
 from django.views.generic import ListView,DetailView
-from Comment.forms import CommentForm
+from comments.forms import CommentForm
 from django.views.generic.edit import FormMixin
 from comments.models import Comment 
 
