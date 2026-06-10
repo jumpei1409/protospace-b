@@ -23,7 +23,7 @@
 
 
 
-<!---コメント投稿フォーム-->
+<!--コメント投稿フォーム-->
 <form method="post" action="{% url 'Comment:create' object.pk %}">
     {% csrf_token %}
     {{ form }}
