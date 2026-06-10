@@ -17,7 +17,9 @@
   </div>
 {% endfor %}
 </div>
-  <h3>こんにちは{{user.nickname}}さん</h3>
 
+{% if user.is_authenticated %}
+  <p class="greeting">こんにちは、<a href="">{{ user.nickname }}さん</a></p>
+{% endif %}
 
 {% endblock content %}
