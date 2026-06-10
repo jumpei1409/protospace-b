@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="container">
+  {% if user.is_authenticated %}
+<form method="post" enctype="multipart/form-data" action="{% url 'Comment:create' %}">
+          {% csrf_token %}
+          <label>コメント</label>
+          {{ form.text }}
+          <input type="submit" value="SEND">
+  </form>
+  {% else %}
+    <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+  {% endif %}
+
+  <div class="comments">
+    {% for comment in comments %}
+    <p>
+      <a href="{% url 'users:mypage' comment.user.pk %}">{{ comment.user.nickname }}</a>
+      f(・{{ comment.text }})
+    </p>
+    {% endfor %}
+  </div>
+</div>
+
