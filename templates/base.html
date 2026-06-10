@@ -17,7 +17,7 @@
 
     {% if user.is_authenticated %}
     <div class="nav">
-      <a href="">ログアウト</a>
+      <a href={% url 'users:logout' %}>ログアウト</a>
       <a class="btn-nav" href="">New Proto</a>
     </div>
 
