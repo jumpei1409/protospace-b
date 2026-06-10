@@ -6,6 +6,7 @@
   <meta charset='UTF-8'>
   <title>Protospace</title>
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
     {% if user.is_authenticated %}
     <div class="nav">
       <a href="">ログアウト</a>
-      <a class="btn-nav" href="">New Proto</a>
+      <a class="btn-nav" href={% url 'Prototypes:create' %}>New Proto</a>
     </div>
 
     {% else %}
