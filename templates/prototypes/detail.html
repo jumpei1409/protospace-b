@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class= "contents row">
+    {{ object.title }}  
+    {{ object.catchphrase }}  
+    {{ object.concept }}  
+    {{ object.user.nickname }}  
+    <img src="{{object.image.url}}">
+
+{% if user == object.user %}
+    <a href="">編集する</a>
+    <a href="">削除する</a>
+{% endif %}
+</div>
+
+<!--コメント一覧-->
+{% for comment in comments %}
+    {{ comment.text}}
+    {{ comment.user.nickname}}
+{% endfor %}
+
+
+
+<!--コメント投稿フォーム-->
+<form method="post" action="{% url 'Comment:create' object.pk %}">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="送信する">
+</form>
+{% endblock content %}
