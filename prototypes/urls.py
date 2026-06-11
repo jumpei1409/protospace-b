@@ -1,9 +1,9 @@
 from django.urls import path,include
-from .views import IndexView, CreateView, DetailView
+from .views import IndexView, PrototypeCreateView, PrototypeDetailView
 
 app_name = 'Prototypes'
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
-    path('prototypes/create/', CreateView.as_view(), name='create'),
-    path('prototypes/<int:pk>/detail',DetailView.as_view(),name='detail'),
+    path('prototypes/create/', PrototypeCreateView.as_view(), name='create'),
+    path('prototypes/<int:pk>/detail',PrototypeDetailView.as_view(),name='detail'),
 ]

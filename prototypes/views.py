@@ -12,7 +12,7 @@ class IndexView(ListView):
     template_name = 'prototypes/index.html'
     context_object_name = 'prototypes'
 
-class CreateView(LoginRequiredMixin, CreateView):
+class PrototypeCreateView(LoginRequiredMixin, CreateView):
     login_url = '/users/sign_in/'
     form_class = PrototypeForm
     template_name = 'prototypes/create.html'
