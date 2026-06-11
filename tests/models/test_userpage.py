@@ -16,12 +16,12 @@ class BaseUserPageViewTest(TestCase):
 
 
 class UserPageViewAccessTestCase(BaseUserPageViewTest):
-    # ログインしていないユーザーでも詳細ページにアクセスできる
+    # ログインしていないユーザーでもユーザー詳細ページにアクセスできる
     def test_anonymous_user_can_access_user_detail_page(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
 
-    # ログインしているユーザーでも詳細ページにアクセスできる
+    # ログインしているユーザーでもユーザー詳細ページにアクセスできる
     def test_logged_in_user_can_access_user_detail_page(self):
         self.client.force_login(self.user)
         response = self.client.get(self.url)
@@ -33,19 +33,19 @@ class UserPageViewUserInfoTestCase(BaseUserPageViewTest):
         super().setUp()
         self.response = self.client.get(self.url)
 
-    # 詳細ページに名前が表示されている
+    # ユーザー詳細ページに名前が表示されている
     def test_user_detail_page_shows_nickname(self):
         self.assertContains(self.response, self.user.nickname)
 
-    # 詳細ページにプロフィールが表示されている
+    # ユーザー詳細ページにプロフィールが表示されている
     def test_user_detail_page_shows_profile(self):
         self.assertContains(self.response, self.user.profile)
 
-    # 詳細ページに所属が表示されている
+    # ユーザー詳細ページに所属が表示されている
     def test_user_detail_page_shows_affiliation(self):
         self.assertContains(self.response, self.user.affiliation)
 
-    # 詳細ページに役職が表示されている
+    # ユーザー詳細ページに役職が表示されている
     def test_user_detail_page_shows_position(self):
         self.assertContains(self.response, self.user.position)
 
@@ -55,19 +55,19 @@ class UserPageViewPrototypeInfoTestCase(BaseUserPageViewTest):
         super().setUp()
         self.response = self.client.get(self.url)
 
-    # 詳細ページにそのユーザーのプロトタイプ名が表示されている
+    # ユーザー詳細ページにそのユーザーのプロトタイプ名が表示されている
     def test_user_detail_page_shows_prototype_title(self):
         self.assertContains(self.response, self.prototype.title)
 
-    # 詳細ページに投稿者名が表示されている
+    # ユーザー詳細ページに投稿者名が表示されている
     def test_user_detail_page_shows_prototype_user(self):
         self.assertContains(self.response, self.prototype.user.nickname)
 
-    # 詳細ページにキャッチコピーが表示されている
+    # ユーザー詳細ページにキャッチコピーが表示されている
     def test_user_detail_page_shows_prototype_catchphrase(self):
         self.assertContains(self.response, self.prototype.catchphrase)
 
-    # 詳細ページに画像のimgタグが存在する
+    # ユーザー詳細ページに画像のimgタグが存在する
     def test_user_detail_page_shows_prototype_image(self):
         self.assertContains(self.response, '<img')
 
