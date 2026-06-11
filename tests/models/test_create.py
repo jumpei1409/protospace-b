@@ -3,6 +3,8 @@ from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from prototypes.models import Prototype
 from django.contrib.auth import get_user_model
+import io
+from PIL import Image
 
 User = get_user_model()
 
@@ -18,9 +20,13 @@ class PrototypeCreateTest(TestCase):
           affiliation='test affiliation',
           position='test position',
       )
+      img = Image.new('RGB', (100, 100), color='red')  # 100x100の赤い画像を生成
+      buf = io.BytesIO()                                # メモリ上のバッファを用意
+      img.save(buf, format='JPEG')                      # バッファにJPEG形式で保存
+      buf.seek(0)                                       # 読み取り位置を先頭に戻す
       self.image = SimpleUploadedFile(
           name='test_image.jpg',
-          content=b'\x47\x49\x46\x38\x39\x61',
+          content=buf.read(),                           # バッファから読み取った完全な画像データ
           content_type='image/jpeg',
       )
       self.url = reverse('Prototypes:create')
@@ -87,7 +93,7 @@ class PrototypeCreateTest(TestCase):
   # ログインしていないとアクセスできないこと
   def test_login_required(self):
       response = self.client.get(self.url)
-      self.assertRedirects(response, '/users/sign_in/?next=/create/')
+      self.assertRedirects(response, '/users/sign_in/?next=/prototypes/create/')
 
   # ログアウト状態で投稿しようとするとログインページに遷移すること
   def test_logout_redirect(self):
@@ -97,4 +103,4 @@ class PrototypeCreateTest(TestCase):
           'concept': 'テストコンセプト',
           'image': self.image,
       })
-      self.assertRedirects(response, '/users/sign_in/?next=/create/')
+      self.assertRedirects(response, '/users/sign_in/?next=/prototypes/create/')
