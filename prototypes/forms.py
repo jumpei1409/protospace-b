@@ -11,3 +11,8 @@ class PrototypeForm(forms.ModelForm):
       'concept': 'コンセプト',
       'image': 'プロトタイプの画像',
     }
+    
+  def __init__(self, *args, **kwargs):
+      super().__init__(*args, **kwargs)
+      # 編集時は画像を必須にしない（未変更でも保存できるように）
+      self.fields['image'].required = False

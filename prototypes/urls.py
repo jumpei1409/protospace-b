@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import IndexView,PrototypeDetailView,PrototypeCreateView,PrototypeDeleteView
+from .views import IndexView,PrototypeDetailView,PrototypeCreateView,PrototypeDeleteView,PrototypeUpdateView
 
 
 
@@ -9,4 +9,5 @@ urlpatterns = [
     path('prototypes/<int:pk>/',PrototypeDetailView.as_view(),name='detail'),
     path('prototypes/create/', PrototypeCreateView.as_view(), name='create'),
     path('prototypes/<int:pk>/delete/', PrototypeDeleteView.as_view(), name='delete'),
+    path('prototypes/<int:pk>/update', PrototypeUpdateView.as_view(), name='update'),
 ]
