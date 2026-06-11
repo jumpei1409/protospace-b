@@ -14,7 +14,7 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(unique=True, blank=False, null=False)
     nickname = models.CharField(max_length=10, blank=False, null=False)
-    profile = models.CharField(blank=False, null=False)
+    profile = models.CharField(max_length=200, blank=True, null=True)
     affiliation = models.CharField(max_length=100, blank=False, null=False)
     position = models.CharField(max_length=100, blank=False, null=False)
 
