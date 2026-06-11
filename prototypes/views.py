@@ -1,13 +1,28 @@
 from .models import Prototype
-from django.views.generic import ListView, CreateView, DeleteView
+from django.views.generic import ListView,DetailView,CreateView,DeleteView
+from comments.forms import CommentForm
+from comments.models import Comment 
+from django.views.generic.edit import FormMixin
 from .forms import PrototypeForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-class PrototypeIndexView(ListView):
+class IndexView(ListView):
     model = Prototype
     template_name = 'prototypes/index.html'
     context_object_name = 'prototypes'
+
+class PrototypeDetailView(FormMixin,DetailView):
+    model = Prototype
+    form_class = CommentForm
+    template_name = 'prototypes/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        comments = Comment.objects.filter(prototype=self.object)
+        context['comments'] = comments
+        context['form'] = self.get_form()
+        return context
 
 class PrototypeCreateView(LoginRequiredMixin, CreateView):
     login_url = '/users/sign_in/'
