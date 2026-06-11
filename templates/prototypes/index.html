@@ -4,7 +4,7 @@
 
 <div class="contents">
   {% if user.is_authenticated %}
-  <p class="greeting">こんにちは、<a href="">{{ user.nickname }}さん</a></p>
+  <p class="greeting">こんにちは、<a href={% url 'users:mypage' user.pk %}>{{ user.nickname }}さん</a></p>
   {% endif %}
 
   <div class="card-list">

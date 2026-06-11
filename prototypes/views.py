@@ -41,6 +41,7 @@ class PrototypeDeleteView(LoginRequiredMixin, DeleteView):
     model = Prototype
     success_url = reverse_lazy('Prototypes:index')
     login_url = '/users/sign_in/'
+    template_name = 'prototypes/detail.html'
 
     def get_queryset(self):
         return Prototype.objects.filter(user=self.request.user)
