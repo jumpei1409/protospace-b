@@ -32,5 +32,6 @@ class UserPageView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['prototypes'] = self.object.prototype_set.all()
+        # ユーザー情報を同時に取得し、N+1問題を回避する
+        context['prototypes'] = self.object.prototype_set.select_related('user').all()
         return context
