@@ -34,7 +34,7 @@
             {% endif %}
             <h4>{{ prototype.title }}</h4>
             <p>{{ prototype.catchphrase }}</p>
-            <p class="by">by <a href="{% url 'users:detail' prototype.user.pk %}">{{ prototype.user.nickname }}</a></p>
+            <p class="by">by <a href="{% url 'users:mypage' prototype.user.pk %}">{{ prototype.user.nickname }}</a></p>
         </div>
         {% empty %}
         <p>投稿したプロトタイプはありません。</p>
