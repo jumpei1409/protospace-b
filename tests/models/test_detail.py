@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from prototypes.models import Prototype
 from users.models import CustomUser
+from comments.models import Comment
 
 class IndexViewTest(TestCase):
 
@@ -51,3 +52,23 @@ class IndexViewTest(TestCase):
         response = self.client.get(reverse('Prototypes:detail', kwargs={'pk': self.prototype.pk}))
         self.assertNotContains(response, '編集する')
         self.assertNotContains(response, '削除する')
+
+    def test_comment_saved_to_db(self):
+        self.client.force_login(self.user)
+        self.client.post(reverse('Comment:create', kwargs={'pk': self.prototype.pk}),{'text': 'テストコメント'})
+        self.assertEqual(Comment.objects.count(), 1)
+
+
+    def test_redirect_after_comment(self):
+        self.client.force_login(self.user)
+        response = self.client.post(reverse('Comment:create', kwargs={'pk': self.prototype.pk}),{'text':'テストコメント'})
+
+    def empty_comment_not_saved(self):
+        self.client.force.login(self.user)
+        self.client.post(reverse('Comment:create', kwags={'pk': self.prototype.pk}),{'text',''})
+        self.assertEqual(Comment.objects.count(), 0)
+
+    def test_comment_deleted_with_prototype(self):
+        Comment.object.create(test='テストコメント', user=self.user, prototype=self.prototype)
+        self.prototype.delete()
+        self.assertEqual(Comment.objects.count(),0)
