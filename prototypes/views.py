@@ -20,7 +20,11 @@ class PrototypeCreateView(LoginRequiredMixin, CreateView):
         prototype.user = self.request.user
         prototype.save()
         return super().form_valid(form)
-    
-class DeleteView(DeleteView):
+
+class DeleteView(LoginRequiredMixin, DeleteView):
     model = Prototype
     success_url = reverse_lazy('Prototypes:index')
+    login_url = '/users/sign_in/'
+
+    def get_queryset(self):
+        return Prototype.objects.filter(user=self.request.user)
