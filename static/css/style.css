@@ -15,7 +15,7 @@ body {
 
 main {
   flex: 1;
-  max-width: 800px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 40px 20px;
   width: 100%;
@@ -208,13 +208,15 @@ h2 {
 /* トップページ */
 .contents {
   padding: 20px 0;
+  max-width: 1026px;
+  margin: 0 auto;
 }
 
 .greeting {
   font-size: 16px;
   font-weight: 400;
   color: #3B4043;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .greeting a {
@@ -228,7 +230,7 @@ h2 {
 
 .card img {
   width: 324px;
-  height: 200px;
+  height: 250px;
   object-fit: cover;
   margin-bottom: 8px;
 }

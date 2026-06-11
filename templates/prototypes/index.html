@@ -14,7 +14,7 @@
         <img src="{{ prototype.image.url }}" alt="{{ prototype.title }}">
         <p class="card-title">{{ prototype.title }}</p>
         <p class="card-catchphrase">{{ prototype.catchphrase }}</p>
-        <p class="card-author">by {{ prototype.user.nickname }}</p>
+        <p class="card-author"><a href={% url 'users:mypage' user.pk %}>by {{ prototype.user.nickname }}</a></p>
       </a>
     </div>
     {% endfor %}

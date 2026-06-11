@@ -13,7 +13,7 @@
   <!-- 編集・削除ボタン -->
   {% if user == object.user %}
   <div class="detail-actions">
-    <a href="" class="btn-action">編集する</a>
+    <a href={% url 'Prototypes:update' object.pk %} class="btn-action">編集する</a>
     <form method="post" action="{% url 'Prototypes:delete' object.pk %}">
       {% csrf_token %}
       <button type="submit" class="btn-action">削除する</button>
