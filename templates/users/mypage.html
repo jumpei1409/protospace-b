@@ -3,28 +3,28 @@
 
 <div class="mypage-container">
 
-    <h2>{{ user.nickname }}さんの情報</h2>
+    <h2>{{ profile_user.nickname }}さんの情報</h2>
 
     <table class="user-table">
         <tr>
             <th>名前</th>
-            <td>{{ user.nickname }}</td>
+            <td>{{ profile_user.nickname }}</td>
         </tr>
         <tr>
             <th>プロフィール</th>
-            <td>{{ user.profile }}</td>
+            <td>{{ profile_user.profile }}</td>
         </tr>
         <tr>
             <th>所属</th>
-            <td>{{ user.affiliation }}</td>
+            <td>{{ profile_user.affiliation }}</td>
         </tr>
         <tr>
             <th>役職</th>
-            <td>{{ user.position }}</td>
+            <td>{{ profile_user.position }}</td>
         </tr>
     </table>
 
-    <h2>{{ user.nickname }}さんのプロトタイプ</h2>
+    <h2>{{ profile_user.nickname }}さんのプロトタイプ</h2>
 
     <div class="prototypes-grid">
         {% for prototype in prototypes %}
