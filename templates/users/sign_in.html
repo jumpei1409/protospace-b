@@ -1,0 +1,49 @@
+{# sign_in.html #}
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post">
+{% csrf_token %}
+
+    <div class="contents row">
+        <div class="container">
+            <h2>ユーザーログイン</h2>
+            {% if form.errors %}
+            <div class="error">
+                <p>入力にエラーがあります。もう一度ご確認ください。</p>
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <div class="field narrow">
+                <label>メールアドレス</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                <ul class="errorlist">
+                    {% for error in form.username.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="field narrow">
+                <label>パスワード（6文字以上）</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                <ul class="errorlist">
+                    {% for error in form.password.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="actions">
+                <input type="submit" value="ログイン">
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}
