@@ -1,5 +1,5 @@
 from .models import Prototype
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, DeleteView
 from .forms import PrototypeForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -20,3 +20,7 @@ class PrototypeCreateView(LoginRequiredMixin, CreateView):
         prototype.user = self.request.user
         prototype.save()
         return super().form_valid(form)
+    
+class DeleteView(DeleteView):
+    model = Prototype
+    success_url = reverse_lazy('Prototypes:index')
