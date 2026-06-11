@@ -1,0 +1,111 @@
+{# sign_up.html #}
+{% extends "base.html" %}
+{% block content %}
+
+<form method="post">
+{% csrf_token %}
+
+    <div class="contents row">
+        <div class="container">
+            <h2>ユーザー新規登録</h2>
+            {% if form.errors %}
+            <div class="error">
+                <p>入力にエラーがあります。もう一度ご確認ください。</p>
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <!-- 短い入力欄 -->
+            <div class="field narrow">
+                <label>メールアドレス</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                <ul class="errorlist">
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="field narrow">
+                <label>パスワード（6文字以上）</label>
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                <ul class="errorlist">
+                    {% for error in form.password1.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="field narrow">
+                <label>パスワード再入力</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                <ul class="errorlist">
+                    {% for error in form.password2.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="field narrow">
+                <label>ユーザー名</label>
+                {{ form.nickname }}
+                {% if form.nickname.errors %}
+                <ul class="errorlist">
+                    {% for error in form.nickname.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <!-- 長い入力欄 -->
+            <div class="field">
+                <label>プロフィール</label>
+                {{ form.profile }}
+                {% if form.profile.errors %}
+                <ul class="errorlist">
+                    {% for error in form.profile.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="field">
+                <label>所属</label>
+                {{ form.affiliation }}
+                {% if form.affiliation.errors %}
+                <ul class="errorlist">
+                    {% for error in form.affiliation.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="field">
+                <label>役職</label>
+                {{ form.position }}
+                {% if form.position.errors %}
+                <ul class="errorlist">
+                    {% for error in form.position.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+
+            <div class="actions">
+                <input type="submit" value="新規登録">
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock content %}

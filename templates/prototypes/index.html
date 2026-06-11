@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="contents">
+  {% if user.is_authenticated %}
+  <p class="greeting">こんにちは、<a href="">{{ user.nickname }}さん</a></p>
+  {% endif %}
+
+  <div class="card-list">
+    {% for prototype in prototypes %}
+    <div class="card">
+      <a href="{% url 'Prototypes:detail' prototype.pk %}">
+        <img src="{{ prototype.image.url }}" alt="{{ prototype.title }}">
+        <p class="card-title">{{ prototype.title }}</p>
+        <p class="card-catchphrase">{{ prototype.catchphrase }}</p>
+        <p class="card-author">by {{ prototype.user.nickname }}</p>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock content %}
