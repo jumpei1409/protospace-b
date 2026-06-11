@@ -1,24 +1,20 @@
 {% load static %}
 
-<div class="container">
+<div class="comment-form">
   {% if user.is_authenticated %}
-  <form method="post" enctype="multipart/form-data" action="{% url 'Comment:create' pk=prototype.pk %}">
+  <p class="detail-label">コメント</p>
+  <form method="post" action="{% url 'Comment:create' object.pk %}">
     {% csrf_token %}
-    <label>コメント</label>
     {{ form.text }}
-    <input type="submit" value="SEND">
+    <input type="submit" value="送信する" class="btn-submit">
   </form>
-    {% else %}
-    <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
-    {% endif %}
-
-  <div class="comments">
-    {% for comment in comments %}
-    <p>
-      <a href="{% url 'users:mypage' comment.user.pk %}">{{ comment.user.nickname }}</a>
-      f(・{{ comment.text }})
-    </p>
-    {% endfor %}
-  </div>
+  {% else %}
+  <p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p>
+  {% endif %}
 </div>
 
+<div class="comment-list">
+  {% for comment in comments %}
+  <p>・{{ comment.text }}<a href="{% url 'users:mypage' comment.user.pk %}">（{{ comment.user.nickname }}）</a></p>
+  {% endfor %}
+</div>
