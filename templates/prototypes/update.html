@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h2>プロトタイプ編集</h2>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="field">
+      <label for="{{ form.title.id_for_label }}">プロトタイプの名称</label>
+      {{ form.title }}
+      {{ form.title.errors }}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.catchphrase.id_for_label }}">キャッチコピー</label>
+      {{ form.catchphrase }}
+      {{ form.catchphrase.errors }}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.concept.id_for_label }}">コンセプト</label>
+      {{ form.concept }}
+      {{ form.concept.errors }}
+    </div>
+
+    <div class="field">
+      <label for="{{ form.image.id_for_label }}">プロトタイプの画像</label>
+      {{ form.image }}
+      {{ form.image.errors }}
+    </div>
+
+    <div class="actions">
+      <input type="submit" value="保存する">
+    </div>
+
+  </form>
+</div>
+{% endblock %}
