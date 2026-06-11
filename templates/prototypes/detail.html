@@ -2,31 +2,57 @@
 {% load static %}
 {% block content %}
 
-<div class= "contents row">
-    {{ object.title }}  
-    {{ object.catchphrase }}  
-    {{ object.concept }}  
-    {{ object.user.nickname }}  
-    <img src="{{object.image.url}}">
+<div class="detail-container">
 
-{% if user == object.user %}
-    <a href="">編集する</a>
-    <a href="">削除する</a>
-{% endif %}
+  <!-- タイトル・ユーザー名 -->
+  <div class="detail-header">
+    <h2>{{ object.title }}</h2>
+    <p class="detail-author">by <a href="">{{ object.user.nickname }}</a></p>
+  </div>
+
+  <!-- 編集・削除ボタン -->
+  {% if user == object.user %}
+  <div class="detail-actions">
+    <a href="" class="btn-action">編集する</a>
+    <a href="" class="btn-action">削除する</a>
+  </div>
+  {% endif %}
+
+  <!-- 画像 -->
+  <div class="detail-image">
+    <img src="{{ object.image.url }}" alt="{{ object.title }}">
+  </div>
+
+  <!-- キャッチコピー・コンセプト -->
+  <div class="detail-body">
+    <h3 class="detail-catchphrase">キャッチコピー</h3>
+    <p class="detail-catchphrase-text">{{ object.catchphrase }}</p>
+    <h3 class="detail-concept-label">コンセプト</h3>
+    <p class="detail-concept">{{ object.concept }}</p>
+  </div>
+
+  <!-- コメントフォームとコメント一覧 -->
+  <div class="detail-comment">
+
+    <!-- コメント投稿フォーム -->
+    <div class="comment-form">
+      <p class="detail-label">コメント</p>
+      <form method="post" action="{% url 'Comment:create' object.pk %}">
+        {% csrf_token %}
+        {{ form }}
+        <input type="submit" value="送信する" class="btn-submit">
+      </form>
+    </div>
+
+    <!-- コメント一覧 -->
+    <div class="comment-list">
+      {% for comment in comments %}
+      <p>・{{ comment.text }}<a href="">（{{ comment.user.nickname }}）</a></p>
+      {% endfor %}
+    </div>
+
+  </div>
+
 </div>
 
-<!--コメント一覧-->
-{% for comment in comments %}
-    {{ comment.text}}
-    {{ comment.user.nickname}}
-{% endfor %}
-
-
-
-<!--コメント投稿フォーム-->
-<form method="post" action="{% url 'Comment:create' object.pk %}">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="送信する">
-</form>
 {% endblock content %}
