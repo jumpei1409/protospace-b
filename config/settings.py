@@ -145,7 +145,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = '/users/sign_in/'
 
 #//本番環境//
-default_dburl = "sqlite///" + str(BASE_DIR / "db.sqlite3")
+default_dburl = "sqlite:///" + str(BASE_DIR / "db.sqlite3")
 DATABASES = {
     'default': config("DATABASE_URL", default=default_dburl, cast=dburl),
 }
