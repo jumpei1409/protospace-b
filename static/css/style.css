@@ -203,3 +203,38 @@ h2 {
 .container input[type="submit"]:hover {
   opacity: 0.85;
 }
+
+.user-table {
+    border-collapse: collapse;
+    width: 500px;
+    margin-bottom: 40px;
+}
+
+.user-table th,
+.user-table td {
+    border: 1px solid #ddd;
+    padding: 16px;
+    text-align: left;
+}
+
+.user-table th {
+    font-weight: bold;
+    width: 150px;
+}
+
+.prototypes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.prototype-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.prototype-card .by {
+    text-align: right;
+    font-size: 13px;
+}
