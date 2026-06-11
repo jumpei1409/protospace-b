@@ -28,7 +28,7 @@ class SignUpView(CreateView):
 class UserPageView(DetailView):
     model = User
     template_name = 'users/mypage.html'
-    context_object_name = 'user'
+    context_object_name = 'profile_user'  # 'user' 以外の名前にする
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
