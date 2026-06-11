@@ -4,7 +4,7 @@
 
 <div class="contents">
   {% if user.is_authenticated %}
-  <p class="greeting">こんにちは、<a href={% url 'users:mypage' user.pk %}>{{ user.nickname }}さん</a></p>
+  <p class="greeting">こんにちは、<a href="{% url 'users:mypage' user.pk %}">{{ user.nickname }}さん</a></p>
   {% endif %}
 
   <div class="card-list">
@@ -14,8 +14,8 @@
         <img src="{{ prototype.image.url }}" alt="{{ prototype.title }}">
         <p class="card-title">{{ prototype.title }}</p>
         <p class="card-catchphrase">{{ prototype.catchphrase }}</p>
-        <p class="card-author"><a href={% url 'users:mypage' user.pk %}>by {{ prototype.user.nickname }}</a></p>
       </a>
+      <p class="card-author"><a href="{% url 'users:mypage' prototype.user.pk %}">by {{ prototype.user.nickname }}</a></p>
     </div>
     {% endfor %}
   </div>

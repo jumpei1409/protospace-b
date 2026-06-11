@@ -17,7 +17,7 @@ main {
   flex: 1;
   max-width: 1100px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 20px;  /* 40px → 20px */
   width: 100%;
 }
 
@@ -83,7 +83,7 @@ footer p {
 
 /* 全体のコンテナ */
 .container {
-  max-width: 600px;
+  max-width: 1100px;
   padding: 40px 20px;
 }
 
@@ -263,11 +263,16 @@ h2 {
   text-align: right;
 }
 
+.card-author a {
+  color: #767676;
+  text-decoration: underline;
+}
+
 /* 詳細ページ */
 .detail-container {
-  max-width: 700px;
+  max-width: 900px;    /* 700px → 900px */
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 20px 20px;  /* 40px → 20px */
   text-align: center;
 }
 
@@ -278,12 +283,19 @@ h2 {
 .detail-header h2 {
   font-size: 24px;
   font-weight: bold;
+  color: #3B4043;
+
 }
 
 .detail-author {
   font-size: 14px;
-  color: #767676;
+  color: #999999;
   margin-bottom: 12px;
+}
+
+.detail-author a {
+  color: #999999;              /* 追加 */
+  text-decoration: none;    /* 追加 */
 }
 
 .detail-actions {
@@ -295,16 +307,18 @@ h2 {
 
 .btn-action {
   padding: 4px 16px;
-  border: 1px solid #767676;
+  border: 1px solid #999999;   /* #767676 → #333 */
   border-radius: 2.5px;
   font-size: 12px;
-  color: #333;
+  color: #999999;
   text-decoration: none;
+  background: none;
+  cursor: pointer;
 }
 
 .detail-image img {
-  width: 370px;
-  height: 220px;
+  width: 290px;
+  height: 280px;
   object-fit: cover;
   margin-bottom: 24px;
 }
@@ -312,59 +326,84 @@ h2 {
 .detail-catchphrase {
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+  color: #3B4043;
 }
 
-.detail-label {
+.detail-catchphrase-text {
   font-size: 14px;
+  margin-bottom: 8px;  /* 16px → 8px */
+}
+
+.detail-concept-label {
+  font-size: 18px;
   font-weight: bold;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  color: #3B4043;
+
 }
 
 .detail-concept {
   font-size: 14px;
-  text-align: left;
-  margin-bottom: 24px;
+  text-align: center;
+  margin-bottom: 16px;  /* 32px → 16px */
   line-height: 1.6;
 }
 
-/* コメントフォーム */
-.comment-form {
+/* コメントエリア */
+.detail-comment {
+  background-color: #F5F5F5;
+  border-radius: 4px;
+  padding: 24px;
   text-align: left;
-  margin-bottom: 16px;
+}
+
+.comment-form {
+  margin-bottom: 24px;
+}
+
+.comment-form label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
 }
 
 .comment-form input[type="text"] {
-  width: 141px;
-  height: 22px;
+  width: 135px;
+  height: 28px;
   border: 1px solid #767676;
   border-radius: 2px;
   padding: 0 8px;
   font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .btn-submit {
-  display: block;
-  margin-top: 8px;
   background-color: #87CEFA;
   color: #fff;
   border: none;
   border-radius: 3px;
-  padding: 8px 20px;
+  padding: 6px 16px;
   font-size: 14px;
   cursor: pointer;
 }
 
 /* コメント一覧 */
 .comment-list {
-  text-align: left;
   font-size: 14px;
   line-height: 2;
+  list-style: none;
+  padding: 0;
+}
+
+.comment-list li::before {
+  content: "・";
 }
 
 .comment-list a {
-  color: #87CEFA;
-  text-decoration: none;
+  color: #999999;
+  text-decoration: underline;
 }
 
 #id_title {
@@ -381,4 +420,76 @@ h2 {
   width: 510px;
   height: 42px;
   resize: vertical;
+}
+
+/* マイページ */
+.user-table th {
+  text-align: left;
+  padding: 8px 16px;
+  font-weight: normal;
+  width: 160px;
+  background-color: #F6F6F6;
+  height: 55px;
+}
+
+.user-table td {
+  padding: 8px 0;
+  color: #767676;
+}
+
+.user-table {
+  width: 511px;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #EBEBEB;
+  padding: 8px 16px;
+}
+
+.prototypes-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 27px;
+}
+
+.prototype-card {
+  width: 324px;
+}
+
+.prototype-card img {
+  width: 324px;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.prototype-card h4 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.prototype-card p {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.prototype-card .by {
+  font-size: 12px;
+  color: #767676;
+  text-align: right;
+}
+
+.prototype-card .by a {
+  color: #767676;
+  text-decoration: underline;
+}
+
+.mypage-container {
+  max-width: 1100px;
+  padding: 40px 0;
+  width: 100%;
 }

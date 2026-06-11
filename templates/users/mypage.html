@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div class="container">
+<div class="mypage-container">
 
     <h2>{{ user.nickname }}さんの情報</h2>
 
@@ -29,11 +29,13 @@
     <div class="prototypes-grid">
         {% for prototype in prototypes %}
         <div class="prototype-card">
-            {% if prototype.image %}
-            <img src="{{ prototype.image.url }}" alt="{{ prototype.title }}">
-            {% endif %}
-            <h4>{{ prototype.title }}</h4>
-            <p>{{ prototype.catchphrase }}</p>
+            <a href="{% url 'Prototypes:detail' prototype.pk %}" style="text-decoration:none; color:inherit;">
+                {% if prototype.image %}
+                <img src="{{ prototype.image.url }}" alt="{{ prototype.title }}">
+                {% endif %}
+                <h4>{{ prototype.title }}</h4>
+                <p>{{ prototype.catchphrase }}</p>
+            </a>
             <p class="by">by <a href="{% url 'users:mypage' prototype.user.pk %}">{{ prototype.user.nickname }}</a></p>
         </div>
         {% empty %}
