@@ -4,7 +4,7 @@ from .forms import PrototypeForm
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-class IndexView(ListView):
+class PrototypeIndexView(ListView):
     model = Prototype
     template_name = 'prototypes/index.html'
     context_object_name = 'prototypes'
@@ -21,7 +21,7 @@ class PrototypeCreateView(LoginRequiredMixin, CreateView):
         prototype.save()
         return super().form_valid(form)
 
-class DeleteView(LoginRequiredMixin, DeleteView):
+class PrototypeDeleteView(LoginRequiredMixin, DeleteView):
     model = Prototype
     success_url = reverse_lazy('Prototypes:index')
     login_url = '/users/sign_in/'
