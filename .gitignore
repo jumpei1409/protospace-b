@@ -32,3 +32,5 @@ media/
 
 __pycache__/
 *.pyc
+
+staticfiles/
