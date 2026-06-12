@@ -1,23 +1,14 @@
 from django.test import TestCase
 from django.urls import reverse
-from prototypes.models import Prototype
-from users.models import CustomUser
 from comments.models import Comment
+from tests.factories.users import UserFactory
+from tests.factories.prototypes import PrototypeFactory
 
 class CommentCreateViewTest(TestCase): 
     def setUp(self):
-         self.user = CustomUser.objects.create_user(
-            email='test@test.com',
-            nickname='テストユーザー',
-            password='testpass123',
-    )
-         self.prototype = Prototype.objects.create(
-            title='テストタイトル',
-            catchphrase='テストテキスト',
-            concept='テストコンセプト',
-            user=self.user,
-    )
-         self.url = reverse('Comment:create', kwargs={'pk': self.prototype.pk})
+        self.user = UserFactory()
+        self.prototype = PrototypeFactory(user=self.user)
+        self.url = reverse('Comment:create', kwargs={'pk': self.prototype.pk})
 
 # コメントがDBに保存されるか
     def test_comment_saved_to_db(self):
