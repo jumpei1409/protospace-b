@@ -45,7 +45,7 @@ class PrototypeDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return Prototype.objects.filter(user=self.request.user)
-      
+
 class PrototypeUpdateView(LoginRequiredMixin, UpdateView):
     model = Prototype
     form_class = PrototypeUpdateForm
