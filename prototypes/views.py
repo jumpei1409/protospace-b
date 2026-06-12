@@ -3,7 +3,7 @@ from django.views.generic import ListView,DetailView,CreateView,DeleteView,Updat
 from comments.forms import CommentForm
 from comments.models import Comment 
 from django.views.generic.edit import FormMixin
-from .forms import PrototypeForm
+from .forms import PrototypeForm,PrototypeUpdateForm
 from django.urls import reverse_lazy,reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
@@ -48,7 +48,7 @@ class PrototypeDeleteView(LoginRequiredMixin, DeleteView):
       
 class PrototypeUpdateView(LoginRequiredMixin, UpdateView):
     model = Prototype
-    form_class = PrototypeForm
+    form_class = PrototypeUpdateForm
     template_name = 'prototypes/update.html'
 
     def get(self, request, *args, **kwargs):
