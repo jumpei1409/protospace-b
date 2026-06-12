@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from prototypes.models import Prototype
 from users.models import CustomUser
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class IndexViewTest(TestCase):
 
@@ -16,7 +17,9 @@ class IndexViewTest(TestCase):
         self.prototype = Prototype.objects.create(
             title='テストタイトル',
             catchphrase='テストテキスト',
+            concept='テストコンセプト',
             user=self.user,
+            image=SimpleUploadedFile('test.png', b'file_content', content_type='image/png')
         )
         #ログイン不要でアクセスできるか
     def test_index_accessible_without_login(self):
