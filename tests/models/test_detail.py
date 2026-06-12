@@ -3,6 +3,7 @@ from django.urls import reverse
 from prototypes.models import Prototype
 from users.models import CustomUser
 from comments.models import Comment
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class IndexViewTest(TestCase):
 
@@ -19,6 +20,7 @@ class IndexViewTest(TestCase):
             catchphrase='テストテキスト',
             user=self.user,
             concept='テストコンセプト', 
+            image=SimpleUploadedFile('test.png', b'file_content', content_type='image/png'),
         )
     def test_detail_accessible_without_login(self):
         response = self.client.get(reverse('Prototypes:detail', kwargs={'pk': self.prototype.pk}))
@@ -63,12 +65,12 @@ class IndexViewTest(TestCase):
         self.client.force_login(self.user)
         response = self.client.post(reverse('Comment:create', kwargs={'pk': self.prototype.pk}),{'text':'テストコメント'})
 
-    def empty_comment_not_saved(self):
-        self.client.force.login(self.user)
-        self.client.post(reverse('Comment:create', kwags={'pk': self.prototype.pk}),{'text',''})
+    def test_empty_comment_not_saved(self):
+        self.client.force_login(self.user)
+        self.client.post(reverse('Comment:create', kwargs={'pk': self.prototype.pk}),{'text':''})
         self.assertEqual(Comment.objects.count(), 0)
 
     def test_comment_deleted_with_prototype(self):
-        Comment.object.create(test='テストコメント', user=self.user, prototype=self.prototype)
+        Comment.objects.create(test='テストコメント', user=self.user, prototype=self.prototype)
         self.prototype.delete()
         self.assertEqual(Comment.objects.count(),0)
