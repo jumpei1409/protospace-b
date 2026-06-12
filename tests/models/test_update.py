@@ -3,6 +3,14 @@ from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from tests.factories.users import UserFactory
 from tests.factories.prototypes import PrototypeFactory
+import io
+from PIL import Image
+
+def get_test_image():
+    img = io.BytesIO()
+    Image.new('RGB', (100, 100), color='red').save(img, format='JPEG')
+    img.seek(0)
+    return SimpleUploadedFile('test.jpg', img.read(), content_type='image/jpeg')
 
 
 class PrototypeUpdateViewTest(TestCase):
@@ -50,24 +58,22 @@ class PrototypeUpdateViewTest(TestCase):
 
     def test_正しいデータを送信するとプロトタイプが更新される(self):
         self.client.force_login(self.owner)
-        image = SimpleUploadedFile('test.jpg', b'file_content', content_type='image/jpeg')
         self.client.post(self.url, {
             'title': '更新後タイトル',
             'catchphrase': '更新後キャッチコピー',
             'concept': '更新後コンセプト',
-            'image': image,
+            'image': get_test_image(),
         })
         self.prototype.refresh_from_db()
         self.assertEqual(self.prototype.title, '更新後タイトル')
 
     def test_正しいデータを送信すると詳細ページへリダイレクトされる(self):
         self.client.force_login(self.owner)
-        image = SimpleUploadedFile('test.jpg', b'file_content', content_type='image/jpeg')
         response = self.client.post(self.url, {
             'title': '更新後タイトル',
             'catchphrase': '更新後キャッチコピー',
             'concept': '更新後コンセプト',
-            'image': image,
+            'image': get_test_image(),
         })
         self.assertRedirects(response, reverse('Prototypes:detail', kwargs={'pk': self.prototype.pk}))
 
@@ -104,7 +110,7 @@ class PrototypeUpdateViewTest(TestCase):
         self.client.force_login(self.owner)
         response = self.client.post(self.url, {
             'title': '入力済みタイトル',
-            'catchphrase': '',  # 空にしてバリデーション失敗
+            'catchphrase': '',
             'concept': '入力済みコンセプト',
         })
         self.assertContains(response, '入力済みタイトル')
@@ -119,7 +125,6 @@ class PrototypeUpdateViewTest(TestCase):
             'title': self.prototype.title,
             'catchphrase': self.prototype.catchphrase,
             'concept': self.prototype.concept,
-            # imageは送信しない
         })
         self.prototype.refresh_from_db()
         self.assertEqual(self.prototype.image.name, original_image)
