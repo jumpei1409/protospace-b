@@ -71,6 +71,6 @@ class IndexViewTest(TestCase):
         self.assertEqual(Comment.objects.count(), 0)
 
     def test_comment_deleted_with_prototype(self):
-        Comment.objects.create(test='テストコメント', user=self.user, prototype=self.prototype)
+        Comment.objects.create(text='テストコメント', user=self.user, prototype=self.prototype)
         self.prototype.delete()
         self.assertEqual(Comment.objects.count(),0)
